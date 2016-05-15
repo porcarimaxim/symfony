@@ -7,11 +7,11 @@ use Doctrine\Common\Persistence\ObjectManager;
 use AppBundle\Entity\Call;
 
 /**
- * Class LoadUserData
- *
+ * Class LoadCallData
+ * 
  * @package AppBundle\DataFixtures\ORM
  */
-class LoadUserData implements FixtureInterface
+class LoadCallData implements FixtureInterface
 {
 	/**
 	 * @param ObjectManager $manager
