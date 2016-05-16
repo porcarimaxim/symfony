@@ -3,126 +3,80 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
  * Call
  *
  * @ORM\Table(name="calls")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CallRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Call
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+	/**
+	 * Hook timestampable behavior
+	 * Updates createdAt, updatedAt fields
+	 */
+	use TimestampableEntity;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=50)
-     */
-    private $number;
+	/**
+	 * Hook SoftDeleteable behavior
+	 * updates deletedAt field
+	 */
+	use SoftDeleteableEntity;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
+	/**
+	 * @var int
+	 *
+	 * @ORM\Column(name="id", type="integer")
+	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="AUTO")
+	 */
+	private $id;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="string", length=50)
+	 */
+	private $number;
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * Get id
+	 *
+	 * @return int
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
 
-    /**
-     * Set number
-     *
-     * @param string $number
-     *
-     * @return Call
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
+	/**
+	 * Set number
+	 *
+	 * @param string $number
+	 *
+	 * @return Call
+	 */
+	public function setNumber($number)
+	{
+		$this->number = $number;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get number
-     *
-     * @return string
-     */
-    public function getNumber()
-    {
-        return $this->number;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Call
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Call
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
+	/**
+	 * Get number
+	 *
+	 * @return string
+	 */
+	public function getNumber()
+	{
+		return $this->number;
+	}
 }
 

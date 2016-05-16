@@ -8,7 +8,7 @@ use AppBundle\Entity\Call;
 
 /**
  * Class LoadCallData
- * 
+ *
  * @package AppBundle\DataFixtures\ORM
  */
 class LoadCallData implements FixtureInterface
@@ -18,12 +18,12 @@ class LoadCallData implements FixtureInterface
 	 */
 	public function load(ObjectManager $manager)
 	{
-		$call = new Call();
-		$call->setNumber('+37379125905');
-		$call->setUpdatedAt(new \DateTime());
-		$call->setCreatedAt(new \DateTime());
+		for ($i = 100; $i < 199; $i++) {
+			$call = new Call();
+			$call->setNumber('+37379125' . $i);
+			$manager->persist($call);
+		}
 
-		$manager->persist($call);
 		$manager->flush();
 	}
 }

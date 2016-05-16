@@ -12,6 +12,11 @@ use FOS\RestBundle\Controller\Annotations\RouteResource;
  */
 class CallController extends FOSRestController implements ClassResourceInterface
 {
+	/**
+	 * List
+	 *
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function cgetAction()
 	{
 		$calls = $this->getDoctrine()
@@ -23,11 +28,12 @@ class CallController extends FOSRestController implements ClassResourceInterface
 		return $this->handleView($view);
 	}
 
-	public function newAction()
-	{
-
-	}
-
+	/**
+	 * Get one call by id
+	 *
+	 * @param Call $call
+	 * @return \Symfony\Component\HttpFoundation\Response
+	 */
 	public function getAction(Call $call)
 	{
 		$view = $this->view($call, 200);

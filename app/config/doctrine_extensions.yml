@@ -1,0 +1,51 @@
+# Services to handle doctrine extensions
+# Doctrine Extension listeners to handle behaviors
+services:
+#    gedmo.listener.tree:
+#        class: Gedmo\Tree\TreeListener
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ '@annotations.reader' ] ]
+
+#    gedmo.listener.translatable:
+#        class: Gedmo\Translatable\TranslatableListener
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ '@annotations.reader' ] ]
+
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotations.reader' ] ]
+
+#    gedmo.listener.sluggable:
+#        class: Gedmo\Sluggable\SluggableListener
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ '@annotations.reader' ] ]
+
+#    gedmo.listener.sortable:
+#        class: Gedmo\Sortable\SortableListener
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ '@annotations.reader' ] ]
+
+#    gedmo.listener.loggable:
+#        class: Gedmo\Loggable\LoggableListener
+#        tags:
+#            - { name: doctrine.event_subscriber, connection: default }
+#        calls:
+#            - [ setAnnotationReader, [ '@annotations.reader' ] ]
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotations.reader' ] ]

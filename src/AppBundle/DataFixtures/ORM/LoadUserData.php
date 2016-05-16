@@ -39,7 +39,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
 		$user->setEmail('admin@cmb.local');
 		$user->setPlainPassword('admin');
 		$user->setEnabled(true);
-		$user->setRoles(array('ROLE_ADMIN'));
+		$user->setRoles(array('ROLE_SUPER_ADMIN'));
 		
 		$userManager->updateUser($user, true);
 	}

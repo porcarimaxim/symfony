@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>Calls</h1>
+	<h1>Calls ({{ calls | length }})</h1>
 
 	<ul>
 		{% for call in calls %}
-			<li>{{ call.id }} / {{ call.number }}</li>
+			<li>
+				{{ call.id }} / {{ call.number }}
+				/ <a href="{{ path('home_delete', {id: call.id}) }}">Delete</a>
+			</li>
 		{% else %}
 			<li>No one call...</li>
 		{% endfor %}

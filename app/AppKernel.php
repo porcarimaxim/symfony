@@ -18,6 +18,7 @@ class AppKernel extends Kernel
 			// Composer bundles
 			new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 			// My bundles
             new AppBundle\AppBundle(),
         ];
