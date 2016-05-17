@@ -7,11 +7,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
+use JMS\Serializer\Annotation\Accessor;
+
 /**
  * Call
  *
  * @ORM\Table(name="calls")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CallRepository")
+ *
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Call
@@ -43,6 +46,13 @@ class Call
 	 * @ORM\Column(type="string", length=50)
 	 */
 	private $number;
+
+	/**
+	 * @var string
+	 *
+	 * @Accessor(getter="getNumber",setter="setNumber")
+	 */
+	protected $virtualNumber;
 
 
 	/**
