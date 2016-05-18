@@ -1,3 +1,6 @@
 fos_rest:
     routing_loader:
         default_format: json
+    view:
+        view_response_listener:
+            enabled: true
