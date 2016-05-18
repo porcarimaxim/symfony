@@ -18,7 +18,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 *
 	 * @View()
 	 *
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @return array
 	 */
 	public function cgetAction()
 	{
@@ -35,10 +35,25 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 * @View()
 	 *
 	 * @param Call $call
-	 * @return \Symfony\Component\HttpFoundation\Response
+	 * @return Call
 	 */
 	public function getAction(Call $call)
 	{
 		return $call;
+	}
+
+	/**
+	 * Delete
+	 *
+	 * @View()
+	 *
+	 * @param Call $call
+	 */
+	public function deleteAction(Call $call)
+	{
+		$em = $this->getDoctrine()->getManager();
+
+		$em->remove($call);
+		$em->flush();
 	}
 }

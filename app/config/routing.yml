@@ -1,11 +1,14 @@
-app:
+# Web
+web:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+# API
+api:
+    type:     rest
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /api/
+
+# FOSUserBundle
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
-users:
-    type:     rest
-    resource: AppBundle\Controller\CallController
-    prefix:   /api/

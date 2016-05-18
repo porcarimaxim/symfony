@@ -1,10 +1,5 @@
 # Learn more about services, parameters and containers at
 # http://symfony.com/doc/current/book/service_container.html
-
-# Import AppBundle services
-imports:
-    - { resource: "@AppBundle/Resources/config/services.yml" }
-
 parameters:
 #    parameter_name: value
 
