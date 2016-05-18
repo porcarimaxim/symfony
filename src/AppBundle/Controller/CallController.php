@@ -6,14 +6,10 @@ use AppBundle\Entity\Call;
 use AppBundle\Form\CallType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Routing\ClassResourceInterface;
-use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Util\Codes;
 use Symfony\Component\HttpFoundation\Request;
 
-/**
- * @RouteResource("Call")
- */
 class CallController extends FOSRestController implements ClassResourceInterface
 {
 	/**
@@ -35,7 +31,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	}
 
 	/**
-	 * Get one call by id
+	 * Get one
 	 *
 	 * @View()
 	 *
@@ -48,7 +44,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	}
 
 	/**
-	 * Create a call
+	 * Create
 	 *
 	 * @View()
 	 *
@@ -57,24 +53,11 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 */
 	public function postAction(Request $request)
 	{
-		$call = new Call();
-		$form = $this->createForm(CallType::class, $call);
-
-		$form->submit($request->request->get($form->getName()));
-
-		if ($form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($call);
-			$em->flush();
-
-			return $this->routeRedirectView('get_call', ['call' => $call->getId()], Codes::HTTP_CREATED);
-		}
-
-		return $form;
+		return $this->processForm(new Call(), $request);
 	}
 
 	/**
-	 * Update a call by id
+	 * Update
 	 *
 	 * @View()
 	 *
@@ -84,23 +67,11 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 */
 	public function putAction(Call $call, Request $request)
 	{
-		$form = $this->createForm(CallType::class, $call);
-
-		$form->submit($request->request->get($form->getName()));
-
-		if ($form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($call);
-			$em->flush();
-
-			return null;
-		}
-
-		return $form;
+		return $this->processForm($call, $request);
 	}
 
 	/**
-	 * Partial update a call by id
+	 * Partial update
 	 *
 	 * @View()
 	 *
@@ -110,14 +81,30 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 */
 	public function patchAction(Call $call, Request $request)
 	{
+		return $this->processForm($call, $request);
+	}
+
+	/**
+	 * Handle post, put and patch actions
+	 *
+	 * @param Call $call
+	 * @param Request $request
+	 * @return null|\Symfony\Component\Form\Form
+	 */
+	private function processForm(Call $call, Request $request)
+	{
 		$form = $this->createForm(CallType::class, $call);
 
-		$form->submit($request->request->get($form->getName()), false);
+		$form->submit($request->request->get($form->getName()), !$request->isMethod('PATCH'));
 
 		if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($call);
 			$em->flush();
+
+			if ($request->isMethod('POST')) {
+				return $this->routeRedirectView('get_call', ['call' => $call->getId()], Codes::HTTP_CREATED);
+			}
 
 			return null;
 		}

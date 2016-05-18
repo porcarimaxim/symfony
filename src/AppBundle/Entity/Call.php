@@ -75,19 +75,6 @@ class Call
 	}
 
 	/**
-	 * Set id
-	 *
-	 * @param $id
-	 * @return Call
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
-
-		return $this;
-	}
-
-	/**
 	 * Set number
 	 *
 	 * @param string $number
