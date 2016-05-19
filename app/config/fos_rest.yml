@@ -1,5 +1,6 @@
 fos_rest:
     disable_csrf_role: IS_AUTHENTICATED_ANONYMOUSLY
+    param_fetcher_listener: true
     routing_loader:
         default_format: json
         include_format: false

@@ -9,4 +9,28 @@ use Doctrine\ORM\EntityRepository;
  */
 class CallRepository extends EntityRepository
 {
+	/**
+	 * Find by filter
+	 *
+	 * @param $filters
+	 * @return \Doctrine\ORM\QueryBuilder
+	 */
+	public function findByFilter($filters)
+	{
+		// Define filters
+		$defines = [
+			'number' => null
+		];
+
+		$filters = array_merge($defines, $filters);
+
+		$qb = $this->createQueryBuilder('c');
+
+		if ($filters['number']) {
+			$qb->andWhere('c.number = :number')
+				->setParameter('number', $filters['number']);
+		}
+
+		return $qb;
+	}
 }

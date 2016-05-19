@@ -4,7 +4,9 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Call;
 use AppBundle\Form\CallType;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Util\Codes;
@@ -17,15 +19,23 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 *
 	 * TODO: Add pagination
 	 *
+	 * @QueryParam(name="number", description="the number of the call")
 	 * @View()
 	 *
+	 * @param ParamFetcher $paramFetcher
 	 * @return array
 	 */
-	public function cgetAction()
+	public function cgetAction(ParamFetcher $paramFetcher)
 	{
-		$calls = $this->getDoctrine()
+		$filters = [
+			'number' => $paramFetcher->get('number')
+		];
+
+		$qb = $this->getDoctrine()
 			->getRepository('AppBundle:Call')
-			->findAll();
+			->findByFilter($filters);
+
+		$calls = $qb->getQuery()->getResult();
 
 		return ['calls' => $calls];
 	}
@@ -89,7 +99,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 *
 	 * @param Call $call
 	 * @param Request $request
-	 * @return null|\Symfony\Component\Form\Form
+	 * @return \FOS\RestBundle\View\View|null|\Symfony\Component\Form\Form
 	 */
 	private function processForm(Call $call, Request $request)
 	{
