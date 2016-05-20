@@ -21,9 +21,6 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
-            anonymous: ~
         main:
             pattern: ^/
             form_login:
