@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
@@ -58,6 +60,12 @@ class Call
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $twoWords;
+
+	/**
+	 * @ManyToOne(targetEntity="AppBundle\Entity\Company", inversedBy="calls")
+	 * @JoinColumn(name="company_id", referencedColumnName="id", nullable=false)
+	 */
+	private $company;
 
 
 	/**
@@ -140,4 +148,28 @@ class Call
 	{
 		return $this->twoWords;
 	}
+
+    /**
+     * Set company
+     *
+     * @param \AppBundle\Entity\Company $company
+     *
+     * @return Call
+     */
+    public function setCompany(\AppBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \AppBundle\Entity\Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
 }

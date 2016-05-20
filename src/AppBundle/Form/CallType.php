@@ -17,7 +17,8 @@ class CallType extends AbstractType
 		$builder
 			->add('number')
 			->add('description')
-			->add('twoWords');
+			->add('twoWords')
+			->add('company');
 	}
 
 	/**
