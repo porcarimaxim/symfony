@@ -3,6 +3,12 @@
 {% block body %}
 	<h1>Calls ({{ calls | length }})</h1>
 
+	{% for flash_message in app.session.flashBag.get('email_status') %}
+		<div class="flash-notice">
+			{{ flash_message }}
+		</div>
+	{% endfor %}
+
 	<ul>
 		{% for call in calls %}
 			<li>

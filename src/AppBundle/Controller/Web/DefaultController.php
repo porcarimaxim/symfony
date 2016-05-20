@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Web;
 
 use AppBundle\Entity\Call;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -56,6 +56,24 @@ class DefaultController extends Controller
 
 		$em->remove($call);
 		$em->flush();
+
+		return $this->redirectToRoute('home_page');
+	}
+
+	/**
+	 * Send email by using service
+	 *
+	 * @Route("/email", name="home_email")
+	 *
+	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
+	 */
+	public function emailAction()
+	{
+		$mailer = $this->get('util.email');
+
+		$sent = $mailer->sendEmail('osoian.marcel.d@gmail.com', 'FYI: All is good', 'This is body message');
+
+		$this->addFlash('email_status', 'Our message has been sent to ' . $sent . ' recipients');
 
 		return $this->redirectToRoute('home_page');
 	}

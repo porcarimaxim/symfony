@@ -24,10 +24,10 @@ class CallRepository extends EntityRepository
 
 		$filters = array_merge($defines, $filters);
 
-		$qb = $this->createQueryBuilder('c');
+		$qb = $this->createQueryBuilder('call');
 
 		if ($filters['number']) {
-			$qb->andWhere('c.number = :number')
+			$qb->andWhere('call.number = :number')
 				->setParameter('number', $filters['number']);
 		}
 

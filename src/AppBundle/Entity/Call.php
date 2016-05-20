@@ -2,12 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
-use JMS\Serializer\Annotation\Accessor;
 
 /**
  * Call
@@ -15,7 +13,7 @@ use JMS\Serializer\Annotation\Accessor;
  * @ORM\Table(name="calls")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CallRepository")
  *
- * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt")
  */
 class Call
 {
@@ -44,8 +42,6 @@ class Call
 	 * @var string
 	 *
 	 * @ORM\Column(type="string", length=50)
-	 *
-	 * @Assert\NotBlank()
 	 */
 	private $number;
 
@@ -59,9 +55,9 @@ class Call
 	/**
 	 * @var string
 	 *
-	 * @Accessor(getter="getNumber",setter="setNumber")
+	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
-	protected $virtualNumber;
+	private $twoWords;
 
 
 	/**
@@ -98,7 +94,6 @@ class Call
 		return $this->number;
 	}
 
-
 	/**
 	 * Set description
 	 *
@@ -121,5 +116,28 @@ class Call
 	{
 		return $this->description;
 	}
-}
 
+	/**
+	 * Set twoWords
+	 *
+	 * @param string $twoWords
+	 *
+	 * @return Call
+	 */
+	public function setTwoWords($twoWords)
+	{
+		$this->twoWords = $twoWords;
+
+		return $this;
+	}
+
+	/**
+	 * Get twoWords
+	 *
+	 * @return string
+	 */
+	public function getTwoWords()
+	{
+		return $this->twoWords;
+	}
+}

@@ -1,0 +1,6 @@
+AppBundle\Entity\Call:
+    properties:
+        updatedAt:
+            exclude: true
+        deletedAt:
+            exclude: true

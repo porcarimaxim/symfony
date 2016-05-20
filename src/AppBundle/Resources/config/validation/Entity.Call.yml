@@ -1,0 +1,6 @@
+AppBundle\Entity\Call:
+    properties:
+        number:
+            - NotBlank: ~
+            - Length:
+                min: 5

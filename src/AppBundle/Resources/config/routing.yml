@@ -1,3 +1,8 @@
-users:
+web:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+api:
     type:     rest
-    resource: AppBundle\Controller\CallController
+    resource: "routing/api.yml"
+    prefix:   /api/

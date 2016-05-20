@@ -12,3 +12,8 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    # Change jms_serializer NamingStrategy
+    # It is a workaround
+    jms_serializer.camel_case_naming_strategy:
+        class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Api;
 
 use AppBundle\Entity\Call;
 use AppBundle\Form\CallType;
@@ -17,9 +17,8 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	/**
 	 * List
 	 *
-	 * TODO: Add pagination
-	 *
 	 * @QueryParam(name="number", description="the number of the call")
+	 * @QueryParam(name="page", default="1", requirements="\d+", description="number of page")
 	 * @View()
 	 *
 	 * @param ParamFetcher $paramFetcher
@@ -33,11 +32,16 @@ class CallController extends FOSRestController implements ClassResourceInterface
 
 		$qb = $this->getDoctrine()
 			->getRepository('AppBundle:Call')
-			->findByFilter($filters);
+			->findByFilter($filters)
+			->orderBy('call.id', 'DESC');
 
-		$calls = $qb->getQuery()->getResult();
+		$pagination = $this->get('knp_paginator')
+			->paginate(
+				$qb,
+				(int)$paramFetcher->get('page')
+			);
 
-		return ['calls' => $calls];
+		return ['calls' => $pagination];
 	}
 
 	/**
@@ -113,7 +117,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 			$em->flush();
 
 			if ($request->isMethod('POST')) {
-				return $this->routeRedirectView('get_call', ['call' => $call->getId()], Codes::HTTP_CREATED);
+				return $this->routeRedirectView('api_get_call', ['call' => $call->getId()], Codes::HTTP_CREATED);
 			}
 
 			return null;
