@@ -19,6 +19,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 *
 	 * @QueryParam(name="number", description="the number of the call")
 	 * @QueryParam(name="page", default="1", requirements="\d+", description="number of page")
+	 * 
 	 * @View()
 	 *
 	 * @param ParamFetcher $paramFetcher

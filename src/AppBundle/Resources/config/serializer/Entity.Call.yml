@@ -1,6 +1,17 @@
 AppBundle\Entity\Call:
+    exclusion_policy: ALL
     properties:
+        id:
+            expose: true
+        number:
+            expose: true
+        description:
+            expose: true
+        createdAt:
+            expose: true
         updatedAt:
-            exclude: true
+            expose: true
         deletedAt:
-            exclude: true
+            expose: true
+        company:
+            expose: true

@@ -7,3 +7,6 @@ jms_serializer:
             KnpPager:
                 namespace_prefix: Knp\Component\Pager
                 path: "%kernel.root_dir%/config/serializer/KnpPager"
+            FosUser:
+                namespace_prefix: FOS\UserBundle
+                path: "%kernel.root_dir%/config/serializer/FosUser"
