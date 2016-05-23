@@ -31,13 +31,13 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "stof/doctrine-extensions-bundle": "^1.2",
         "jms/serializer-bundle": "^1.1",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "nelmio/api-doc-bundle": "^2.12"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0",
-        "doctrine/doctrine-fixtures-bundle": "^2.3",
-        "nelmio/api-doc-bundle": "^2.12"
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
         "post-install-cmd": [
