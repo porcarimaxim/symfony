@@ -7,16 +7,19 @@ use AppBundle\Form\CallType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\Annotations\View;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Request;
 
 class CallController extends FOSRestController implements ClassResourceInterface
 {
 	/**
-	 * Create call
+	 * Create a call
 	 *
 	 * @View(serializerGroups={"Public"}, statusCode=FOS\RestBundle\Util\Codes::HTTP_CREATED)
 	 *
-	 * @param $widgetId
+	 * @ApiDoc()
+	 *
+	 * @param int $widgetId
 	 * @param Request $request
 	 * @return \FOS\RestBundle\View\View|\Symfony\Component\Form\Form
 	 */
