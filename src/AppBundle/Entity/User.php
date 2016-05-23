@@ -30,6 +30,20 @@ class User extends BaseUser
 	protected $id;
 
 	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="string", length=20, nullable=true)
+	 */
+	private $lastName;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(type="string", length=20, nullable=true)
+	 */
+	private $firstName;
+
+	/**
 	 * @ManyToOne(targetEntity="AppBundle\Entity\Company", inversedBy="users")
 	 * @JoinColumn(name="company_id", referencedColumnName="id", nullable=false)
 	 */
@@ -63,5 +77,53 @@ class User extends BaseUser
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
     }
 }
