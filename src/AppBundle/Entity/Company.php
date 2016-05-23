@@ -50,6 +50,13 @@ class Company
 	 */
 	private $calls;
 
+	/**
+	 * @var \Doctrine\Common\Collections\ArrayCollection
+	 *
+	 * @OneToMany(targetEntity="AppBundle\Entity\Widget", mappedBy="company")
+	 */
+	private $widgets;
+
 
 	/**
 	 * Get id
@@ -160,4 +167,38 @@ class Company
 	{
 		return $this->calls;
 	}
+
+    /**
+     * Add widget
+     *
+     * @param \AppBundle\Entity\Widget $widget
+     *
+     * @return Company
+     */
+    public function addWidget(\AppBundle\Entity\Widget $widget)
+    {
+        $this->widgets[] = $widget;
+
+        return $this;
+    }
+
+    /**
+     * Remove widget
+     *
+     * @param \AppBundle\Entity\Widget $widget
+     */
+    public function removeWidget(\AppBundle\Entity\Widget $widget)
+    {
+        $this->widgets->removeElement($widget);
+    }
+
+    /**
+     * Get widgets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWidgets()
+    {
+        return $this->widgets;
+    }
 }

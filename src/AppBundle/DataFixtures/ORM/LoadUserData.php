@@ -2,6 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Company;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -38,6 +39,11 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 		$userManager = $this->container->get('fos_user.user_manager');
 
 		/**
+		 * @var Company $company
+		 */
+		$company = $this->getReference('main-company');
+
+		/**
 		 * @var UserInterface|User $user
 		 */
 		$user = $userManager->createUser();
@@ -47,7 +53,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
 		$user->setEnabled(true);
 		$user->setRoles(array('ROLE_SUPER_ADMIN'));
 
-		$user->setCompany($this->getReference('main-company'));
+		$user->setCompany($company);
 
 		$userManager->updateUser($user, true);
 	}

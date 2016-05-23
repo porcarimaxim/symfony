@@ -56,30 +56,6 @@ class User extends BaseUser
 	}
 
     /**
-     * Set company
-     *
-     * @param \AppBundle\Entity\Company $company
-     *
-     * @return User
-     */
-    public function setCompany(\AppBundle\Entity\Company $company = null)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return \AppBundle\Entity\Company
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
      * Set lastName
      *
      * @param string $lastName
@@ -125,5 +101,29 @@ class User extends BaseUser
     public function getFirstName()
     {
         return $this->firstName;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \AppBundle\Entity\Company $company
+     *
+     * @return User
+     */
+    public function setCompany(\AppBundle\Entity\Company $company)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \AppBundle\Entity\Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

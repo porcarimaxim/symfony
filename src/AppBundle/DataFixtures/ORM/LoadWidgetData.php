@@ -6,14 +6,14 @@ use AppBundle\Entity\Company;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\Call;
+use AppBundle\Entity\Widget;
 
 /**
- * Class LoadCallData
+ * Class LoadWidgetData
  *
  * @package AppBundle\DataFixtures\ORM
  */
-class LoadCallData extends AbstractFixture implements OrderedFixtureInterface
+class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
 {
 	/**
 	 * @param ObjectManager $manager
@@ -25,15 +25,12 @@ class LoadCallData extends AbstractFixture implements OrderedFixtureInterface
 		 */
 		$company = $this->getReference('main-company');
 
-		for ($i = 100; $i < 199; $i++) {
-			$call = new Call();
-			$call->setNumber('+37379125' . $i);
-			
-			$call->setCompany($company);
-
-			$manager->persist($call);
-		}
-
+		$widget = new Widget();
+		$widget->setName('Web Site #1');
+		
+		$widget->setCompany($company);
+		
+		$manager->persist($widget);
 		$manager->flush();
 	}
 
