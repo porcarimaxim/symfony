@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\Api\Widget;
 
-use AppBundle\Entity\Widget;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Routing\ClassResourceInterface;
