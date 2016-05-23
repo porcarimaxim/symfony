@@ -7,7 +7,6 @@ use AppBundle\Form\CallType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\Controller\Annotations\View;
-use FOS\RestBundle\Util\Codes;
 use Symfony\Component\HttpFoundation\Request;
 
 class CallController extends FOSRestController implements ClassResourceInterface
@@ -15,7 +14,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	/**
 	 * Create call
 	 *
-	 * @View()
+	 * @View(serializerGroups={"Public"}, statusCode=FOS\RestBundle\Util\Codes::HTTP_CREATED)
 	 *
 	 * @param $widgetId
 	 * @param Request $request
@@ -57,7 +56,7 @@ class CallController extends FOSRestController implements ClassResourceInterface
 			$em->flush();
 
 			if ($request->isMethod('POST')) {
-				return $this->view(null, Codes::HTTP_CREATED);
+				return ['call' => $call];
 			}
 
 			return null;

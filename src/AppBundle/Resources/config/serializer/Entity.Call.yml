@@ -1,17 +1,10 @@
 AppBundle\Entity\Call:
-    exclusion_policy: ALL
     properties:
         id:
-            expose: true
+            groups: ["Employee", "Public"]
         number:
-            expose: true
-        description:
-            expose: true
+            groups: ["Employee", "Public"]
         createdAt:
-            expose: true
+            groups: ["Employee", "Public"]
         updatedAt:
-            expose: true
-        deletedAt:
-            expose: true
-        widget:
-            expose: true
+            groups: ["Employee"]
