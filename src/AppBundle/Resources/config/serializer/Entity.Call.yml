@@ -13,5 +13,5 @@ AppBundle\Entity\Call:
             expose: true
         deletedAt:
             expose: true
-        company:
+        widget:
             expose: true

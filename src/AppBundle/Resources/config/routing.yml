@@ -1,8 +1,8 @@
-web:
+app_web:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
-api:
+app_api:
     type:     rest
     resource: "routing/api.yml"
     prefix:   /api/

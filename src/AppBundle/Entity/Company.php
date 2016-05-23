@@ -46,127 +46,85 @@ class Company
 	/**
 	 * @var \Doctrine\Common\Collections\ArrayCollection
 	 *
-	 * @OneToMany(targetEntity="AppBundle\Entity\Call", mappedBy="company")
-	 */
-	private $calls;
-
-	/**
-	 * @var \Doctrine\Common\Collections\ArrayCollection
-	 *
 	 * @OneToMany(targetEntity="AppBundle\Entity\Widget", mappedBy="company")
 	 */
 	private $widgets;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->widgets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * Get id
-	 *
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Company
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
-	/**
-	 * Set name
-	 *
-	 * @param string $name
-	 *
-	 * @return Company
-	 */
-	public function setName($name)
-	{
-		$this->name = $name;
+        return $this;
+    }
 
-		return $this;
-	}
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * Get name
-	 *
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Company
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
 
-	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$this->users = new \Doctrine\Common\Collections\ArrayCollection();
-	}
+        return $this;
+    }
 
-	/**
-	 * Add user
-	 *
-	 * @param \AppBundle\Entity\User $user
-	 *
-	 * @return Company
-	 */
-	public function addUser(\AppBundle\Entity\User $user)
-	{
-		$this->users[] = $user;
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
 
-		return $this;
-	}
-
-	/**
-	 * Remove user
-	 *
-	 * @param \AppBundle\Entity\User $user
-	 */
-	public function removeUser(\AppBundle\Entity\User $user)
-	{
-		$this->users->removeElement($user);
-	}
-
-	/**
-	 * Get users
-	 *
-	 * @return \Doctrine\Common\Collections\Collection
-	 */
-	public function getUsers()
-	{
-		return $this->users;
-	}
-
-	/**
-	 * Add call
-	 *
-	 * @param \AppBundle\Entity\Call $call
-	 *
-	 * @return Company
-	 */
-	public function addCall(\AppBundle\Entity\Call $call)
-	{
-		$this->calls[] = $call;
-
-		return $this;
-	}
-
-	/**
-	 * Remove call
-	 *
-	 * @param \AppBundle\Entity\Call $call
-	 */
-	public function removeCall(\AppBundle\Entity\Call $call)
-	{
-		$this->calls->removeElement($call);
-	}
-
-	/**
-	 * Get calls
-	 *
-	 * @return \Doctrine\Common\Collections\Collection
-	 */
-	public function getCalls()
-	{
-		return $this->calls;
-	}
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 
     /**
      * Add widget

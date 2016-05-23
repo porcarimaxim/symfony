@@ -1,0 +1,7 @@
+AppBundle\Entity\Widget:
+    exclusion_policy: ALL
+    properties:
+        id:
+            groups: [Public]
+        name:
+            groups: [Public]

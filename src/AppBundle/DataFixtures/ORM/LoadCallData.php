@@ -2,7 +2,7 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Company;
+use AppBundle\Entity\Widget;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -21,15 +21,15 @@ class LoadCallData extends AbstractFixture implements OrderedFixtureInterface
 	public function load(ObjectManager $manager)
 	{
 		/**
-		 * @var Company $company
+		 * @var Widget $widget
 		 */
-		$company = $this->getReference('main-company');
+		$widget = $this->getReference('main-widget');
 
 		for ($i = 100; $i < 199; $i++) {
 			$call = new Call();
 			$call->setNumber('+37379125' . $i);
 			
-			$call->setCompany($company);
+			$call->setWidget($widget);
 
 			$manager->persist($call);
 		}
@@ -42,6 +42,6 @@ class LoadCallData extends AbstractFixture implements OrderedFixtureInterface
 	 */
 	public function getOrder()
 	{
-		return 2;
+		return 3;
 	}
 }

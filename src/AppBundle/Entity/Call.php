@@ -62,114 +62,116 @@ class Call
 	private $twoWords;
 
 	/**
-	 * @ManyToOne(targetEntity="AppBundle\Entity\Company", inversedBy="calls")
-	 * @JoinColumn(name="company_id", referencedColumnName="id", nullable=false)
+	 * @var Widget
+	 *
+	 * @ManyToOne(targetEntity="AppBundle\Entity\Widget", inversedBy="calls")
+	 * @JoinColumn(name="widget_id", referencedColumnName="id", nullable=false)
 	 */
-	private $company;
-
-
-	/**
-	 * Get id
-	 *
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
-
-	/**
-	 * Set number
-	 *
-	 * @param string $number
-	 *
-	 * @return Call
-	 */
-	public function setNumber($number)
-	{
-		$this->number = $number;
-
-		return $this;
-	}
-
-	/**
-	 * Get number
-	 *
-	 * @return string
-	 */
-	public function getNumber()
-	{
-		return $this->number;
-	}
-
-	/**
-	 * Set description
-	 *
-	 * @param string $description
-	 * @return Call
-	 */
-	public function setDescription($description)
-	{
-		$this->description = $description;
-
-		return $this;
-	}
-
-	/**
-	 * Get description
-	 *
-	 * @return string
-	 */
-	public function getDescription()
-	{
-		return $this->description;
-	}
-
-	/**
-	 * Set twoWords
-	 *
-	 * @param string $twoWords
-	 *
-	 * @return Call
-	 */
-	public function setTwoWords($twoWords)
-	{
-		$this->twoWords = $twoWords;
-
-		return $this;
-	}
-
-	/**
-	 * Get twoWords
-	 *
-	 * @return string
-	 */
-	public function getTwoWords()
-	{
-		return $this->twoWords;
-	}
+	private $widget;
 
     /**
-     * Set company
+     * Get id
      *
-     * @param \AppBundle\Entity\Company $company
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set number
+     *
+     * @param string $number
      *
      * @return Call
      */
-    public function setCompany(\AppBundle\Entity\Company $company = null)
+    public function setNumber($number)
     {
-        $this->company = $company;
+        $this->number = $number;
 
         return $this;
     }
 
     /**
-     * Get company
+     * Get number
      *
-     * @return \AppBundle\Entity\Company
+     * @return string
      */
-    public function getCompany()
+    public function getNumber()
     {
-        return $this->company;
+        return $this->number;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Call
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set twoWords
+     *
+     * @param string $twoWords
+     *
+     * @return Call
+     */
+    public function setTwoWords($twoWords)
+    {
+        $this->twoWords = $twoWords;
+
+        return $this;
+    }
+
+    /**
+     * Get twoWords
+     *
+     * @return string
+     */
+    public function getTwoWords()
+    {
+        return $this->twoWords;
+    }
+
+    /**
+     * Set widget
+     *
+     * @param \AppBundle\Entity\Widget $widget
+     *
+     * @return Call
+     */
+    public function setWidget(\AppBundle\Entity\Widget $widget)
+    {
+        $this->widget = $widget;
+
+        return $this;
+    }
+
+    /**
+     * Get widget
+     *
+     * @return \AppBundle\Entity\Widget
+     */
+    public function getWidget()
+    {
+        return $this->widget;
     }
 }

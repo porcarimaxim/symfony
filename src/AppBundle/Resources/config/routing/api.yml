@@ -1,4 +1,15 @@
-users:
-    type:     rest
+app_api_call:
+    type: rest
     resource: AppBundle\Controller\Api\CallController
+    name_prefix: api_
+
+app_api_widget:
+    type: rest
+    resource: AppBundle\Controller\Api\Widget\WidgetController
+    name_prefix: api_
+
+app_api_widget_call:
+    type: rest
+    parent: app_api_widget
+    resource: AppBundle\Controller\Api\Widget\CallController
     name_prefix: api_

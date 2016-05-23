@@ -32,6 +32,8 @@ class LoadWidgetData extends AbstractFixture implements OrderedFixtureInterface
 		
 		$manager->persist($widget);
 		$manager->flush();
+
+		$this->addReference('main-widget', $widget);
 	}
 
 	/**
