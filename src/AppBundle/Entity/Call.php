@@ -43,7 +43,7 @@ class Call
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(type="string", length=50)
+	 * @ORM\Column(type="string", length=20)
 	 */
 	private $number;
 
@@ -53,13 +53,6 @@ class Call
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $description;
-
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(type="string", length=255, nullable=true)
-	 */
-	private $twoWords;
 
 	/**
 	 * @var Widget
@@ -125,30 +118,6 @@ class Call
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set twoWords
-     *
-     * @param string $twoWords
-     *
-     * @return Call
-     */
-    public function setTwoWords($twoWords)
-    {
-        $this->twoWords = $twoWords;
-
-        return $this;
-    }
-
-    /**
-     * Get twoWords
-     *
-     * @return string
-     */
-    public function getTwoWords()
-    {
-        return $this->twoWords;
     }
 
     /**

@@ -3,5 +3,5 @@ AppBundle\Entity\Widget:
     properties:
         id:
             groups: [Public]
-        name:
+        uuid:
             groups: [Public]

@@ -13,22 +13,22 @@ use Symfony\Component\HttpFoundation\Request;
 class CallController extends FOSRestController implements ClassResourceInterface
 {
 	/**
-	 * Create a call
+	 * Create a call (member of widget)
 	 *
 	 * @View(serializerGroups={"Public"}, statusCode=FOS\RestBundle\Util\Codes::HTTP_CREATED)
 	 *
 	 * @ApiDoc()
 	 *
-	 * @param int $widgetId
+	 * @param string $uuid
 	 * @param Request $request
 	 * @return \FOS\RestBundle\View\View|\Symfony\Component\Form\Form
 	 */
-	public function postAction($widgetId, Request $request)
+	public function postAction($uuid, Request $request)
 	{
 		$em = $this->getDoctrine()->getManager();
 
 		$widget = $em->getRepository('AppBundle:Widget')
-			->findOneBy(['id' => $widgetId]);
+			->findOneBy(['uuid' => $uuid]);
 
 		if (!$widget) {
 			throw $this->createNotFoundException('Widget not found');

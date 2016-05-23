@@ -13,6 +13,7 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
  *
  * @ORM\Table(name="widgets")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\WidgetRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Widget
 {
@@ -30,6 +31,13 @@ class Widget
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	private $id;
+
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="uuid", type="string", length=50, unique=true)
+	 */
+	private $uuid;
 
 	/**
 	 * @var string
@@ -52,103 +60,138 @@ class Widget
 	 * @OneToMany(targetEntity="AppBundle\Entity\Call", mappedBy="widget")
 	 */
 	private $calls;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->calls = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
+
+	/**
+	 * @ORM\PrePersist()
+	 */
+	public function prePersist()
+	{
+		$this->setUuid(uniqid());
+	}
+
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->calls = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * Set name
+	 *
+	 * @param string $name
+	 *
+	 * @return Widget
+	 */
+	public function setName($name)
+	{
+		$this->name = $name;
+
+		return $this;
+	}
+
+	/**
+	 * Get name
+	 *
+	 * @return string
+	 */
+	public function getName()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * Set company
+	 *
+	 * @param \AppBundle\Entity\Company $company
+	 *
+	 * @return Widget
+	 */
+	public function setCompany(\AppBundle\Entity\Company $company)
+	{
+		$this->company = $company;
+
+		return $this;
+	}
+
+	/**
+	 * Get company
+	 *
+	 * @return \AppBundle\Entity\Company
+	 */
+	public function getCompany()
+	{
+		return $this->company;
+	}
+
+	/**
+	 * Add call
+	 *
+	 * @param \AppBundle\Entity\Call $call
+	 *
+	 * @return Widget
+	 */
+	public function addCall(\AppBundle\Entity\Call $call)
+	{
+		$this->calls[] = $call;
+
+		return $this;
+	}
+
+	/**
+	 * Remove call
+	 *
+	 * @param \AppBundle\Entity\Call $call
+	 */
+	public function removeCall(\AppBundle\Entity\Call $call)
+	{
+		$this->calls->removeElement($call);
+	}
+
+	/**
+	 * Get calls
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getCalls()
+	{
+		return $this->calls;
+	}
 
     /**
-     * Get id
+     * Set uuid
      *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
+     * @param string $uuid
      *
      * @return Widget
      */
-    public function setName($name)
+    public function setUuid($uuid)
     {
-        $this->name = $name;
+        $this->uuid = $uuid;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get uuid
      *
      * @return string
      */
-    public function getName()
+    public function getUuid()
     {
-        return $this->name;
-    }
-
-    /**
-     * Set company
-     *
-     * @param \AppBundle\Entity\Company $company
-     *
-     * @return Widget
-     */
-    public function setCompany(\AppBundle\Entity\Company $company)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return \AppBundle\Entity\Company
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * Add call
-     *
-     * @param \AppBundle\Entity\Call $call
-     *
-     * @return Widget
-     */
-    public function addCall(\AppBundle\Entity\Call $call)
-    {
-        $this->calls[] = $call;
-
-        return $this;
-    }
-
-    /**
-     * Remove call
-     *
-     * @param \AppBundle\Entity\Call $call
-     */
-    public function removeCall(\AppBundle\Entity\Call $call)
-    {
-        $this->calls->removeElement($call);
-    }
-
-    /**
-     * Get calls
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCalls()
-    {
-        return $this->calls;
+        return $this->uuid;
     }
 }

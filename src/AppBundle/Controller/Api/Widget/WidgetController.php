@@ -16,17 +16,26 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 class WidgetController extends FOSRestController implements ClassResourceInterface
 {
 	/**
-	 * Get one widget by id
+	 * Get one widget by uuid
 	 *
 	 * @View(serializerGroups={"Public"})
 	 *
 	 * @ApiDoc()
 	 *
-	 * @param Widget $widget
+	 * @param string $uuid
 	 * @return array
 	 */
-	public function getAction(Widget $widget)
+	public function getAction($uuid)
 	{
+		$em = $this->getDoctrine()->getManager();
+
+		$widget = $em->getRepository('AppBundle:Widget')
+			->findOneBy(['uuid' => $uuid]);
+
+		if (!$widget) {
+			throw $this->createNotFoundException('Widget not found');
+		}
+
 		return ['widget' => $widget];
 	}
 }

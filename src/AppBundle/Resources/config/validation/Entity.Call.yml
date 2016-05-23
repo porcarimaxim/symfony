@@ -3,6 +3,8 @@ AppBundle\Entity\Call:
         number:
             - NotBlank: ~
             - Length:
-                min: 5
+                min: 8
+                max: 20
+            - Regex: '/^((\+|00)\d{1,3})?\d+$/'
         widget:
             - NotBlank: ~
