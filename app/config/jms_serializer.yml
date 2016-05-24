@@ -3,10 +3,10 @@ jms_serializer:
         directories:
             KnpPaginatorBundle:
                 namespace_prefix: Knp\Bundle\PaginatorBundle
-                path: "%kernel.root_dir%/config/serializer/KnpPaginatorBundle"
+                path: "%kernel.root_dir%/Resources/config/serializer/KnpPaginatorBundle"
             KnpPager:
                 namespace_prefix: Knp\Component\Pager
-                path: "%kernel.root_dir%/config/serializer/KnpPager"
+                path: "%kernel.root_dir%/Resources/config/serializer/KnpPager"
             FosUser:
                 namespace_prefix: FOS\UserBundle
-                path: "%kernel.root_dir%/config/serializer/FosUser"
+                path: "%kernel.root_dir%/Resources/config/serializer/FosUser"
