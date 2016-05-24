@@ -46,7 +46,7 @@ class EmailUtil
 	public function sendEmail($to, $subject, $body, $from = null)
 	{
 		if ($from === null) {
-			$from = $this->container->getParameter('no_reply_email');
+			$from = $this->container->getParameter('app_no_reply_email');
 		}
 
 		$message = \Swift_Message::newInstance();

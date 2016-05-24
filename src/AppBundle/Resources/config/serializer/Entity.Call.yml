@@ -1,4 +1,5 @@
 AppBundle\Entity\Call:
+    exclusion_policy: ALL
     properties:
         id:
             groups: ["Employee", "Public"]
