@@ -19,7 +19,8 @@ class CallController extends FOSRestController implements ClassResourceInterface
 	 *
 	 * @QueryParam(name="number", description="the number of the call")
 	 * @QueryParam(name="page", default="1", requirements="\d+", description="number of page")
-	 * 
+	 * @QueryParam(name="limit", default="50", requirements="\d+", description="number of items per page")
+	 *
 	 * @View()
 	 *
 	 * @param ParamFetcher $paramFetcher
@@ -39,7 +40,8 @@ class CallController extends FOSRestController implements ClassResourceInterface
 		$pagination = $this->get('knp_paginator')
 			->paginate(
 				$qb,
-				(int)$paramFetcher->get('page')
+				(int)$paramFetcher->get('page'),
+				(int)$paramFetcher->get('limit')
 			);
 
 		return ['calls' => $pagination];
