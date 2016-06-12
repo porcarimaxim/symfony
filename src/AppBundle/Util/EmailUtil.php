@@ -6,8 +6,8 @@ use Swift_Mailer;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class HelloUtil
- *
+ * Class EmailUtil
+ * 
  * @package AppBundle\Util
  */
 class EmailUtil
